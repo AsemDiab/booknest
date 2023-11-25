@@ -1,0 +1,89 @@
+
+*{
+    border: none;
+    padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+}
+body{
+    height: 100vh;
+    background: url('../images/fly.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.nopad{
+    padding: 0;
+}
+.card{
+    border: none;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: transparent;
+}
+.card-header{
+    border: none;
+    padding: 1px;
+    border-bottom: 1px solid white;
+
+    
+}
+.card-header ul{
+    padding-left: 20px;
+    border: none;
+    height: 100%;
+    width: 100%;
+    height: fit-content;
+    list-style: none;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.card-header ul li{
+    border: none;
+    height: 100%;
+    width: fit-content;
+    
+}
+.card-header ul li :hover{
+    
+    position: relative;
+    transform: scalex(2);
+}
+.card-header ul li a{
+    color:black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.card-header ul li a:hover{
+    color:white;
+    background: black;
+    /* shadow: 1px 0px 0px  red; */
+    text-decoration: none;
+    height: 100%;
+    padding: 10px;
+    border-radius: 10px;
+}
+.card-header ul li a:hover span{
+  
+    text-shadow: 5px 5px 5px  5px white;
+    
+}
+td{
+    color : black;
+    font-weight: bold;
+}
+
+table thead tr td{
+    background:  coral;
+    ;
+
+}
+ tbody tr:hover{
+    position: relative;
+    background: white;
+    transform: scale(1.2) translateX(-2rem);
+    
+}

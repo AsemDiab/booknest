@@ -1,0 +1,153 @@
+tbody tr{
+    margin: 10px;
+    padding-top: 10px;
+}
+
+td{
+    padding-top: 10px;
+}
+
+
+input,select,textarea{
+    background: transparent;
+    border:none;
+    border-bottom: 1px solid black;
+}
+body{
+    height: 100vh;
+    background: url('../images/fly.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.nopad{
+    padding: 0;
+}
+.card{
+    border: none;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: transparent;
+}
+.card-header{
+    border: none;
+    padding: 1px;
+    border-bottom: 1px solid white;
+
+    
+}
+.card-header ul{
+    padding-left: 20px;
+    border: none;
+    height: 100%;
+    width: 100%;
+    height: fit-content;
+    list-style: none;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.card-header ul li{
+    border: none;
+    height: 100%;
+    width: fit-content;
+    
+}
+.card-header ul li :hover{
+    
+    position: relative;
+    transform: scalex(2);
+}
+.card-header ul li a{
+    color:black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.card-header ul li a:hover{
+    color:white;
+    background: black;
+    /* shadow: 1px 0px 0px  red; */
+    text-decoration: none;
+    height: 100%;
+    padding: 10px;
+    border-radius: 10px;
+}
+.card-header ul li a:hover span{
+  
+    text-shadow: 5px 5px 5px  5px white;
+    
+}
+td{
+    color : black;
+    font-weight: bold;
+}
+
+table thead tr td{
+    background:  coral;
+    ;
+
+}
+
+#addToDatabase{
+    /* background: #ffffffd0; */
+    padding: 10px;
+    border:none ;
+    position: relative;
+    background: transparent;
+}
+
+#addToDatabase:hover{
+    color:white
+}
+#addToDatabase::before{
+    content: '';
+    background: black;
+    width: 0%;
+    height: 100%;
+    left: 0;
+    top:0;
+    position: absolute;
+    z-index: -1;
+    border-radius: 50px 0 0 50px;
+    transition-duration:  1s;
+}
+#addToDatabase:hover::before {
+width: 100%;
+transition-duration: 1s;
+border-radius: 50px;
+
+}
+#addToDatabase::after{
+    content: '';
+    background: white;
+    width: 100%;
+    height: 100%;
+    right: 0;
+    top:0;
+    position: absolute;
+    z-index: -1;
+    border-radius: 50px;
+    transition-duration:  1s;
+}
+#addToDatabase:hover::after {
+width: 0%;
+transition-duration: 1s;
+border-radius: 0px 50px 50px 0;
+
+}
+
+#updateDatabase{
+    background: #000000d0;
+    padding: 10px;
+    border-radius: 50px ;
+    color:white
+}
+
+#updateDatabase:hover{
+    background: #000000ff;
+}
+tbody tr:hover{
+    background: white;
+}
