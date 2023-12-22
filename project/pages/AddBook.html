@@ -48,14 +48,14 @@
                                             <td class="fs-3">
                                             <label for="bookType">Select Book Type:</label>
                                             <select id="bookType" name="bookType" >
-                                                <option value="fiction">Fiction</option>
-                                                <option value="non-fiction">Non-Fiction</option>
-                                                <option value="mystery">Mystery</option>
-                                                <option value="romance">Romance</option>
-                                                <option value="science-fiction">Science Fiction</option>
+                                                <!-- <option value="0">Fiction</option>
+                                                <option value="1">Non-Fiction</option>
+                                                <option value="2">Mystery</option>
+                                                <option value="3">Romance</option>
+                                                <option value="4">Science Fiction</option> -->
                                                 <!-- Add more options as needed -->
-                                            </td>
-                                            </select><br>   
+                                            
+                                            </select><br>   </td>
                                                                              </tr>
                                        
                                        
@@ -77,8 +77,41 @@
                         </div>
                     </div>
                 </div> 
-           <script src="../script/Addbook.js">
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+                
+
+           <script src="../script/addBook.js">
         
+           </script>
+           
+           <script>
+            // let bookType=document.getElementById('bookType')
+
+            let datas23=[];
+
+            $.ajax({
+  url: "selectsTyps.php",
+  type: "POST",
+ data: {} ,
+success: function(response) {
+console.log(response);
+//  console.log(response);
+
+datas23=JSON.parse(response);
+//  console.log(datas23.type)
+//  console.log(datas23[0])
+bookType.innerHTML=""
+for(let i=0;i<datas23.length;i++){
+   bookType.innerHTML+=" <option value="+datas23[i]['TypeCode']+">"+datas23[i]['TypeNAme']+"</option>"
+   console.log(1)
+}
+
+},
+error: function(error) {
+console.error(error);
+}
+});
            </script>
     
 </body>

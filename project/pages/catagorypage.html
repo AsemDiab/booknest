@@ -71,11 +71,11 @@
             <div class="col-9 noPadd rightSide ">
                 <div class="card w-100 h-100 noPadd bg-transparent">
                     <div class="card-header noPadd bg-transparent">
-                        <ul class="noPadd  pageHead">
-                            <li class="li fs-5" id="novel">novel</li>
+                        <ul class="noPadd  pageHead" id="bookType">
+                            <!-- <li class="li fs-5" id="novel">novel</li>
                             <li class="li fs-5" id="manga">manga</li>
                             <li class="li fs-5" id="fantasy">fantasy</li>
-                            <li class="li fs-5"  id="acadamic">Acadamic</li>
+                            <li class="li fs-5"  id="acadamic">Acadamic</li> -->
                         </ul>
                     </div>
                     <div class="card-body noPadd border-0 bg-transparent overflow-auto d-flex justify-content-center">
@@ -85,27 +85,8 @@
                                   <div class="bookCard1"></div>
                                   <div class="bookCard1"></div>
                                   <div class="bookCard1"></div>
-                                  <!-- <div class="bookCard"></div>
-                                  <div class="bookCard"></div>
-                                  <div class="bookCard"></div>
-                                  <div class="bookCard"></div>
-                                  <div class="bookCard"></div>
-                                  <div class="bookCard"></div>
-                                  <div class="bookCard"></div>
-                                  <div class="bookCard"></div>
-                                  <div class="bookCard"></div>
-                                  <div class="bookCard"></div>
-                                  <div class="bookCard"></div>
-                                  <div class="bookCard"></div>
-                                  <div class="bookCard"></div>
-                                  <div class="bookCard"></div>
-                                  <div class="bookCard"></div>
-                                  <div class="bookCard"></div>
-                                  <div class="bookCard"></div>
-                                  <div class="bookCard"></div>
-                                  <div class="bookCard"></div>
-                                  <div class="bookCard"></div>
-                                  <div class="bookCard"></div> -->
+                                  <!-- <div class="bookCard"></div> -->
+                                                                 
                                  </div>
                                     <!-- <div class="displayer h-100 w-100 overflow-auto"></div> -->
                                 </div>
@@ -113,7 +94,152 @@
                     </div>
                 </div>
             </div> 
-       <script src="../script/catagory.js"> </script>
+       <!-- <script src="../script/catagory.js"> </script> -->
        <script src="../script/catgory.js"></script>
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+       <script>
+        build()
+function build(){
+
+    let bookType=document.getElementById('bookType')
+
+
+    bookType.innerHTML=""
+
+let datas=[];
+
+$.ajax({
+  url: "selectsTyps.php",
+  type: "POST",
+ data: {} ,
+success: function(response) {
+console.log(response);
+//  console.log(response);
+
+datas=JSON.parse(response);
+//  console.log(datas.type)
+//  console.log(datas[0])
+for(let i=0;i<datas.length;i++){
+  //  bookType.innerHTML+="<li class=\"li fs-5\" id="+datas[i]['TypeCode']+">"+datas[i]['TypeNAme']+"</li>"
+   let li=document.createElement('li')
+    li.classList.add("li")
+    li.id=datas[i]['TypeCode']
+    li.innerText=datas[i]['TypeNAme']
+    li.classList.add("fs-5")
+    bookType.appendChild(li)
+    console.log("mellon")
+
+    li.onclick=function(){
+      alert('pizza')
+      let datas2=[];
+
+$.ajax({
+  url: "opencat.php",
+  type: "POST",
+ data: {ID:datas[i]['TypeCode']} ,
+success: function(response) {
+  // console.log(response)
+
+datas2=JSON.parse(response);
+// console.log(datas2)
+
+ document.getElementById('container').innerHTML=''
+
+for(let i=0;i<datas2.length;i++){
+  buildCard(datas2[i]);
+
+  console.log(datas2[i]['BookID']+" "+i)
+  let bookType=document.getElementById('bookType')
+
+//  
+}
+
+},
+error: function(error) {
+console.error(error);
+}
+});
+      
+    }
+    
+}
+
+},
+error: function(error) {
+console.error(error);
+}
+});
+
+   }
+       </script>
+
+       <script>
+
+       </script>
 </body>
 </html>
+
+
+
+
+<!-- 
+  let datas=[];
+
+// $.ajax({
+//   url: "selectsTyps.php",
+//   type: "POST",
+//  data: {} ,
+// success: function(response) {
+
+
+// datas=JSON.parse(response);
+
+// // document.getElementById('container').innerHTML=""
+// for(let i=0;i<datas.length;i++){
+//    let li=document.createElement('li')
+//     li.classList.add("li")
+//     li.id=datas[i]['TypeCode']
+//     li.innerText=datas[i]['TypeNAme']
+//     li.classList.add("fs-5")
+//     bookType.appendChild(li)
+
+//     li.onclick=function(){
+//       alert('pizza')
+//       let datas2=[];
+
+// $.ajax({
+//   url: "opencat.php",
+//   type: "POST",
+//  data: {ID:datas[i]['TypeCode']} ,
+// success: function(response) {
+// // console.log(response);
+
+// datas2=JSON.parse(response);
+
+// bookType.innerHTML=""
+// document.getElementById('container').innerHTML=''
+// for(let j=0;j<datas2.length;j++){
+//   buildCard(datas2[j]); 
+//   // console.log(j);
+   
+// }
+// build();
+
+// },
+// error: function(error) {
+// console.error(error);
+// }
+// });
+      
+//     }
+    
+// }
+
+// },
+// error: function(error) {
+// console.error(error);
+// }
+// });
+
+ -->

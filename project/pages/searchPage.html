@@ -82,33 +82,8 @@
 
 
                 <div class="card-body bg-transparent noPadd border-0 ">
-                    <div class="card-body  container">
-                        <div class="bookCard1"></div>
-                        <div class="bookCard1"></div>
-                        <div class="bookCard1"></div>
-                        <div class="bookCard1"></div>
-                        <div class="bookCard1"></div>
-                        <div class="bookCard"></div>
-                        <div class="bookCard"></div>
-                        <div class="bookCard"></div>
-                        <div class="bookCard"></div>
-                        <div class="bookCard"></div>
-                        <div class="bookCard"></div>
-                        <div class="bookCard"></div>
-                        <div class="bookCard"></div>
-                        <div class="bookCard"></div>
-                        <div class="bookCard"></div>
-                        <div class="bookCard"></div>
-                        <div class="bookCard"></div>
-                        <div class="bookCard"></div>
-                        <div class="bookCard"></div>
-                        <div class="bookCard"></div>
-                        <div class="bookCard"></div>
-                        <div class="bookCard"></div>
-                        <div class="bookCard"></div>
-                        <div class="bookCard"></div>
-                        <div class="bookCard"></div>
-                        <div class="bookCard"></div>
+                    <div class="card-body  container" id="container">
+                     
                        
                         
 
@@ -119,6 +94,9 @@
             </div>
     
     </div></div></div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <script>
         let searchButton=document.getElementById('searchButton')
         let searchBox=document.getElementById('search-text')
@@ -129,6 +107,38 @@
         searchButton.onclick=function(){
             if(isOpen){
 
+
+              
+$.ajax({
+  url: "search.php",
+  type: "POST",
+ data: {STR:JSON.stringify(searchBox.value)} ,
+success: function(response) {
+console.log(response)
+datas=JSON.parse(response);
+console.log(122)
+
+
+// .innerHTML=""
+let container=document.getElementById('container')
+// container.innerHTML=''
+for(let j=0;j<datas.length;j++){
+  console.log(122)
+    let bookCard=document.createElement('div')
+    bookCard.classList.add('bookCard')
+    bookCard.style.backgroundImage="url('../images/lastClosedDoors.png') "
+    bookCard.onclick=function(){
+        window.location.href='../pages/bookPage.html'
+    }
+    container.appendChild(bookCard);  
+}
+
+},
+error: function(error) {
+console.error(error);
+}
+});
+      
             }
             else{
                 searchBox.style.width='240px'
@@ -144,6 +154,8 @@
             }
         }
        </script>
+
+       
     
 </body>
 </html>

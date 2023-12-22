@@ -33,40 +33,14 @@
                                     <tr class="fs-3" align="center"> <td>type Code</td> <td> Type</td> <td> </td></tr>
                                 </thead>
                                 <tbody >
-                                    <tr style="text-align: center">
-                                        <td class="fs-3" ><input type="number"  id="Typeid" min="1"></td>
-                                        <td class="fs-3"><input type="text"  id="Type"></td>
-                                        <td class="fs-3"> <i class="fa fa-trash"></i></td>
-                                    </tr>
-                                    <tr align="center">
-                                        <td class="fs-3" ><input type="number"  id="Typeid"></td>
-                                        <td class="fs-3"><input type="text"  id="Type"></td>
-                                        <td class="fs-3"> <i class="fa fa-trash"></i></td>
-                                    </tr>
-                                    <tr align="center">
-                                        <td class="fs-3" ><input type="number"  id="Typeid"></td>
-                                        <td class="fs-3"><input type="text"  id="Type"></td>
-                                        <td class="fs-3"> <i class="fa fa-trash"></i></td>
-                                    </tr>
-                                    <tr align="center">
-                                        <td class="fs-3" ><input type="number"  id="Typeid"></td>
-                                        <td class="fs-3"><input type="text"  id="Type"></td>
-                                        <td class="fs-3"> <i class="fa fa-trash"></i></td>
-                                    </tr>
-                                    <tr align="center">
-                                        <td class="fs-3" ><input type="number"  id="Typeid"></td>
-                                        <td class="fs-3"><input type="text"  id="Type"></td>
-                                        <td class="fs-3"> <i class="fa fa-trash"></i></td>
-                                    </tr>
-                                   
-                                   
+                                    
                                     
                                 </tbody>
                             </table>
                     </div>
                                 <div class="card-footer d-sm-flex justify-content-around p-5 border-0">
                                     <button id="addToDatabase" class="fs-2 " onclick="addRow()">add to database</button>
-                                    <button id="updateDatabase" class="fs-2 ">update database</button>
+                                    <button id="updateDatabase" onclick="update()" class="fs-2 ">update database</button>
 
                                 </div>
                             </div>
@@ -74,7 +48,74 @@
         
             </div> 
        <script src="../script/bookType.js">
+
     
+    
+       </script>
+
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+       <script>
+        let datas=[];
+
+$.ajax({
+          url: "selectsTyps.php",
+          type: "POST",
+         data: {} ,
+        success: function(response) {
+        console.log(response);
+        console.log(response);
+        datas=JSON.parse(response);
+        console.log(datas.type)
+        console.log(datas[0])
+        for(let i=0;i<datas.length;i++){
+            if(datas[i]['TypeCode']!=0)
+            addRow(datas[i]['TypeCode'],datas[i]['TypeNAme'])
+        }
+
+        },
+        error: function(error) {
+        console.error(error);
+    }
+    });
+
+
+    
+        function update(){
+        let ids=document.getElementsByClassName('Typeid')
+        let idid=document.getElementById('Typeid')
+        console.log(ids.length)
+        let names=document.querySelectorAll('.Type')
+        console.log(names.length)
+
+        let data=[]
+
+        for(let i=0;i<ids.length;i++){
+            console.log('ohaio'+ids[0].value +" "+ names[0].value)   
+                     x={
+                id:ids[i].value,
+                name:names[i].value
+            }
+            data.push(x)
+        }
+       
+        // for(let i=0;i<data.length;i++){
+        //     alert(data[i]['id'] +" " +data[i]['name'])
+        // }
+
+        $.ajax({
+          url: "auth.php",
+          type: "POST",
+         data: { arrayData: JSON.stringify (data) },
+        success: function(response) {
+        console.log(response);
+        },
+        error: function(error) {
+        console.error(error);
+    }
+    });
+
+    }
        </script>
 
     
