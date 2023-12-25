@@ -1,0 +1,111 @@
+
+
+#form{
+    background: #ffffff61;
+    display: grid;
+    width: 80%;
+    height: fit-content;
+    margin: 0 10%;
+    border-radius: 50px;
+    padding: 20px;
+    gap: 20px;
+    position: relative;
+    justify-content:center;
+}
+#form div{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px ;
+    
+    /* max-width: 200px; */
+    /* flex-grow: 1; */
+    /* background: yellow; */
+ 
+}
+input:not(#submit){
+    background: transparent;
+    border:none;
+    border-bottom:1px solid black ;
+    /* flex-basis: 200px; */
+    display: flex;
+    align-items:flex-end;
+    color: black;
+    font-size: 1.75rem;
+    font-weight: bold;
+    flex-grow: 1;
+    width: 80%;
+    max-width: 200px;
+
+}
+label{
+    /* min-width: fit-content; */
+    width: fit-content;
+    /* max-width: fit-content; */
+    height: fit-content;
+    text-align: start;
+    margin: 10px 10px 10px 10px;
+
+}
+input::placeholder{
+    color:darkslategrey;
+    font-size: 1rem;
+    
+}
+#locationBtn{
+    width: 80%;
+    border-radius: 50px;
+    height: 50px;
+    background: url('../images/World-Map-Wallpaper-HD.jpg');
+    background-size:cover;
+    color: black;
+    font-weight: bold;
+}
+#locationBtn:hover{
+   
+   
+    position: relative;
+    transform: scale(1.1) translatex(5px);
+
+}
+input:active{
+    border-color:blue ;
+    color: blue;
+}
+input:focus{
+    border: none;
+}
+#submit{
+    background: green;
+    height: 50px;
+    border-radius: 50px;
+    color: black;
+    font-weight: bold;    
+}
+input:hover{
+    position: relative;
+    transform: scale(1.2) translate(20px);
+    color:white
+}
+#submit:hover{
+    position: relative;
+    transform: scale(1.2) ;
+    color:white
+}
+@media screen and (max-width:500px) {
+    label{
+        word-wrap:break-word;
+        /* word-break: break-all; */
+        /* width: 10%; */
+        font-size: 0.75 rem;
+        line-height: 1.2;
+    }
+    input{
+        font-size: 0.75rem;
+    }
+    #form{
+        background: red;
+    }
+    
+}

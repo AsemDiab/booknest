@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">  
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/AddBook.css">
+</head>
+<body>
+        <div class="container-fluid  border-0" id="displayer">
+            <div class="row flex-nowarp border-0"> 
+                <div class="col-12 noPadd rightSide border-0">
+                    <div class="card w-100 h-100 noPadd bg-transparent border-0">
+                        <div class="card-header noPadd bg-transparent">
+                
+                                <ul class="TabsList ">
+                                    <li><a href="adminpage.html"><span class="fs-3">orders</span></a></li>
+                                    <li><a href="#"><span  class="fs-3">add Book</span></a></li>
+                                    <li><a href="bookType.html"><span class="fs-3">add Book Type</span></a></li>
+                                </ul>
+                        
+                        </div>
+                        <div class="card-body border-0 noPadd border-0 bg-transparent overflow-auto d-flex justify-content-center align-items-center">
+                            <div class="container">
+                                <div class="bookPicture">
+                                    <input type="file" required id="imageinput">
+                                </div>
+                                <table>
+                                    <tbody class="bb">
+                                        <tr>
+                                            <td class="fs-3" ><label for="bookTitle">Book Title</label><input type="text" required id="bookTitle"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fs-3" > <label for="Auther">Auther</label><input type="text" required id="Auther"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fs-3 " > <label for="copiesNumber">copies Number</label><input type="text" required id="copiesNumber"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fs-3" > <label for="price">price</label><input type="text" required id="price"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fs-3">
+                                            <label for="bookType">Select Book Type:</label>
+                                            <select id="bookType" name="bookType" >
+                                                <!-- <option value="0">Fiction</option>
+                                                <option value="1">Non-Fiction</option>
+                                                <option value="2">Mystery</option>
+                                                <option value="3">Romance</option>
+                                                <option value="4">Science Fiction</option> -->
+                                                <!-- Add more options as needed -->
+                                            
+                                            </select><br>   </td>
+                                                                             </tr>
+                                       
+                                       
+                                        
+                                    </tbody>
+                                </table>
+                                <div class="desceiption fs-1">
+                                    <label for="bookDescription">Book Description:</label><br>
+        <textarea id="bookDescription" name="bookDescription" rows="4" cols="50"></textarea><br>
+                                        </div>
+                            </div>   
+                                        <!-- <div class="displayer h-100 w-100 overflow-auto"></div> -->
+                                    </div>
+                                    <div class="card-footer d-sm-flex justify-content-center p-5 border-0">
+                                        <button id="addToDatabase" class="fs-2 ">add to database</button>
+
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div> 
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+                
+
+           <script src="../script/addBook.js">
+        
+           </script>
+           
+           <script>
+            // let bookType=document.getElementById('bookType')
+
+            let datas23=[];
+
+            $.ajax({
+  url: "selectsTyps.php",
+  type: "POST",
+ data: {} ,
+success: function(response) {
+console.log(response);
+//  console.log(response);
+
+datas23=JSON.parse(response);
+//  console.log(datas23.type)
+//  console.log(datas23[0])
+bookType.innerHTML=""
+for(let i=0;i<datas23.length;i++){
+   bookType.innerHTML+=" <option value="+datas23[i]['TypeCode']+">"+datas23[i]['TypeNAme']+"</option>"
+   console.log(1)
+}
+
+},
+error: function(error) {
+console.error(error);
+}
+});
+           </script>
+    
+</body>
+</html>

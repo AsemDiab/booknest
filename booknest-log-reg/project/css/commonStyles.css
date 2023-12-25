@@ -1,0 +1,49 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background: url('../images/fly.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+img{
+    width: 50px;
+    
+    border-radius: 50%;
+    
+}
+
+.noPadd{
+    padding: 0;
+    margin: 0;
+}
+
+.manu{
+    height: 100vh;
+    position:fixed;
+    top: 0;
+    left: 0;
+}
+.manu ul li :hover i ,.manu ul li :hover span{
+    /* background: white; */
+    color: black;
+}
+
+.manu ul li:nth-last-child(1){
+    position: absolute;
+    bottom: 10px;
+}
+.rightSide{
+    position: absolute;
+    right: 0px;
+  }
+
+  .selectedsideOption{background: white;border-radius: 0 10px 10px 0;}
+  .selectedsideOption i , .selectedsideOption span {
+    color: black;
+
+  }
