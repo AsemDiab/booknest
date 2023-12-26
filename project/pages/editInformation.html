@@ -55,7 +55,12 @@
           
                     </a>
                   </li>
-                  
+                  <li class="nav-items  sideOption ">
+                    <a href="../pages/followMyOrders.html" class="nav-link text-white">
+                      <i class="fs-1 fa fa-shipping-fast " ></i><span class="fs-4  ms-2  d-none d-sm-inline"> my order</span>
+          
+                    </a>
+                  </li>
                   <li class="nav-items  sideOption ">
                     <a href="../index.html" class="nav-link text-white">
                       <i class="fs-1 fa  fa-sign-out-alt "></i><span class="fs-4  ms-2  d-none d-sm-inline"></span>
@@ -68,48 +73,55 @@
         
                 <div class="col-9 noPadd  rightSide h-100  d-flex justify-content-center align-items-center">
                         
-                            <form id="form">
+                            <div id="form">
                                <div><label  for="Nameinput">name</label> <input type="text" id="Nameinput" placeholder="name" maxlength="50"></div>
                                <div><label  for="social_Input">social Media</label> <input type="url" id="social_Input" placeholder="social media url"></div>
                                <div><label  for="phoneNumber">phone Number</label> <input type="tel" id="phoneNumber" placeholder="phone number" maxlength="50"></div>
                                <div><label  for="oldpassward">old passward</label> <input type="password" id="oldpassword" placeholder="old passward" minlength="8"></div>
                                 <div><label  for="passward">new passward</label> <input type="password" id="password" placeholder="new passward" minlength="8"></div>
                                <div><label  for="locationBtn">location</label><button class="fs-3" id="locationBtn" onclick="getLocation()">Get My Location</button></div> 
-                               <input type="submit" class="fs-1" id="submit">
+                               <button  class="fs-1" id="submit" onclick="updateInformation()">submit</button>
+                            </div>
     <!-- <p id="location"></p> -->
 
     <script>
-        function getLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition, showError);
-            } else {
-                document.getElementById("location").innerHTML = "Geolocation is not supported by this browser.";
-            }
-        }
+      // let globallatitude;
+      // let globallongitude;
+      //   function getLocation() {
+      //       if (navigator.geolocation) {
+      //           navigator.geolocation.getCurrentPosition(showPosition, showError);
+      //       } else {
+      //           document.getElementById("location").innerHTML = "Geolocation is not supported by this browser.";
+      //       }
+      //   }
 
-        function showPosition(position) {
-            var latitude = position.coords.latitude;
-            var longitude = position.coords.longitude;
-            document.getElementById("location").innerHTML = "Your location: " + latitude + ", " + longitude;
-        }
+      //   function showPosition(position) {
+      //       var latitude = position.coords.latitude;
+      //       var longitude = position.coords.longitude;
+      //       document.getElementById("location").innerHTML = "Your location: " + latitude + ", " + longitude;
+      //       globallatitude=latitude;
+      //       globallongitude=longitude;
+      //   }
 
-        function showError(error) {
-            switch (error.code) {
-                case error.PERMISSION_DENIED:
-                    document.getElementById("location").innerHTML = "User denied the request for Geolocation.";
-                    break;
-                case error.POSITION_UNAVAILABLE:
-                    document.getElementById("location").innerHTML = "Location information is unavailable.";
-                    break;
-                case error.TIMEOUT:
-                    document.getElementById("location").innerHTML = "The request to get user location timed out.";
-                    break;
-                case error.UNKNOWN_ERROR:
-                    document.getElementById("location").innerHTML = "An unknown error occurred.";
-                    break;
-            }
-        }
+      //   function showError(error) {
+      //       switch (error.code) {
+      //           case error.PERMISSION_DENIED:
+      //               document.getElementById("location").innerHTML = "User denied the request for Geolocation.";
+      //               break;
+      //           case error.POSITION_UNAVAILABLE:
+      //               document.getElementById("location").innerHTML = "Location information is unavailable.";
+      //               break;
+      //           case error.TIMEOUT:
+      //               document.getElementById("location").innerHTML = "The request to get user location timed out.";
+      //               break;
+      //           case error.UNKNOWN_ERROR:
+      //               document.getElementById("location").innerHTML = "An unknown error occurred.";
+      //               break;
+      //       }
+      //   }
     </script>
+
+    <script src="../script/editInformation.js"></script>
                                 
                             </form>
                             </div>                                    

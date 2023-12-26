@@ -56,6 +56,13 @@
                 </a>
               </li>
 
+              <li class="nav-items  sideOption ">
+                <a href="../pages/followMyOrders.html" class="nav-link text-white">
+                  <i class="fs-1 fa fa-shipping-fast " ></i><span class="fs-4  ms-2  d-none d-sm-inline"> my order</span>
+      
+                </a>
+              </li>
+
               
       
               <li class="nav-items  sideOption ">
@@ -149,7 +156,7 @@ datas2=JSON.parse(response);
 for(let i=0;i<datas2.length;i++){
   buildCard(datas2[i]);
 
-  console.log(datas2[i]['BookID']+" "+i)
+  // console.log(datas2[i]['BookID']+" "+i)
   let bookType=document.getElementById('bookType')
 
 //  

@@ -14,7 +14,7 @@ $columns = ["userName", "password", "social", "phoneNumber", "position"];
 
 $user_name = $_POST['UserName'];
 // echo $user_name;
-$password =$_POST["Password"];
+$password1 =sha1($_POST["Password"]);
 // echo $password;
 $url = "https://example.com";
 $phone_number = "123-456-7890";
@@ -22,7 +22,7 @@ $position = "POINT(12.3456 , -78.9012)";
 $lat="12.3456";
 $lng= "-78.9012";
 
-$sql= "SELECT * FROM `users` WHERE `userName`='".$user_name."' and `password`='".$password."'";
+$sql= "SELECT * FROM `users` WHERE `userName`='".$user_name."' and `password`='".$password1."'";
 
 $result=$conn->query($sql);
 

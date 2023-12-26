@@ -148,22 +148,70 @@ xhr.send(formData);
     if(contants.length!=0){
         for(let i=0;i<contants.length;i++)
         console.log(contants[i][0]+" : "+contants[i][1]+"\n")
-    //  let formData= new FormData()
-    //  formData.append('n',12)
-    //  var xhr = new XMLHttpRequest();
-    //  xhr.open('POST', '../pages/createOrder.php', true);
+     let formData= new FormData()
+     formData.append('n',12)
+     var xhr = new XMLHttpRequest();
+     xhr.open('POST', '../pages/createOrder.php', true);
      
-    //  xhr.onload = function () {
-    //      if (xhr.status === 200) {
-    //          // document.getElementById('result').innerHTML = xhr.responseText;
-    //          console.log(xhr.response)
+     xhr.onload = function () {
+         if (xhr.status === 200) {
+            contants.forEach( e =>{
+           
+            let formData1= new FormData()
+            formData1.append('qty',e[1])
+            formData1.append('bookID',e[0])
+            var xhr1 = new XMLHttpRequest();
+            xhr1.open('POST', '../pages/insertItems.php', true);
             
-    //      } else {
-    //          alert('Error occurred while uploading the image. Please try again.');
-    //      }
-    //  };
+            xhr1.onload = function () {
+                if (xhr1.status === 200) {
+                    console.log(xhr1.response)
+
+
+                    var xhr2 = new XMLHttpRequest();
+                    xhr2.open('POST', '../pages/getItems.php', true);
+                    
+                    xhr2.onload = function () {
+                        if (xhr.status === 200) {
+                            console.log(xhr.response)
+                            alert("patata")
+                           
+                        } else {
+                            alert('Error occurred while uploading the image. Please try again.');
+                        }
+                    };
+                    
+                    
+                    xhr2.send(formData1);
+
+                    localStorage.removeItem('cart')
+
+                    // window.location="../pages/cartPage.html"
+
+
+
+
+
+
+
+
+
+                   
+                } else {
+                    alert('Error occurred while uploading the image. Please try again.');
+                }
+            };
+            
+            
+            xhr1.send(formData1);
+        })
+         } else {
+             alert('Error occurred while uploading the image. Please try again.');
+         }
+     };
+
      
-    //  xhr.send(formData);
+     xhr.send(formData);
      
      console.log()
     }

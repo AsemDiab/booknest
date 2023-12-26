@@ -11,6 +11,48 @@
     <link rel="stylesheet" href="../css/commonStyles.css">
     <link rel="stylesheet" href="../css/OrderDetails.css">
     <link rel="stylesheet" href="../css/OrderList.css">
+    <style>
+      .closed{
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000000e6;
+    position: absolute;
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* display: none; */
+    visibility: hidden;
+}
+      .msg{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap ;
+    width: 350px;
+    height: 370px;
+    border-radius: 10%;
+    background: white;
+}
+.msg button{
+    /* background: red; */
+    width: fit-content;
+    max-height: fit-content;
+    margin: 10px;
+    font-size: 24px;
+    border-radius: 10px;
+    
+}
+.msg .horizontal_box{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: space-around;
+
+}
+    </style>
 </head>
 <body>
     <div class="container-fluid " id="displayer">
@@ -27,8 +69,8 @@
                       <td>price</td>
                       <td>quntaty</td>
                       <td> total cost</td></tr></thead>
-                      <tbody>
-                      <tr class="order">
+                      <tbody id="tbody">
+                      <!-- <tr class="order">
                         <td><img src="../images/lastClosedDoors.png" class="  productImage"></td>
                         <td> <span class="fs-6">lastClosedDoors</span></td>
                         <td class="price fs-6">25.85$</td>
@@ -42,7 +84,7 @@
                         <td class="price fs-5">25.85$</td>
                         <td><input type="number" value="1" class="w-25 fs-6 in"></td>
                         <td class="totalCost fs-6"> 625$</td>
-                      </tr>
+                      </tr> -->
                     
                       
                       
@@ -52,7 +94,7 @@
                 </div>
                 <div class="card-footer noPadd bg-transparent">
                  <div class=" total">
-                    <label class="label">total cost  : <span id="cost">100.50</span>$ <span id="status" class="fs-1 fw-bold " > delivered </span></label>
+                    <label class="label">total cost  : <span id="cost">100.50</span>$<span id="showInfo" onclick=" openMsg()"> show info</span> <span id="status" class="fs-1 fw-bold " > not shiped </span></label>
                  </div>
                 </div>
                 
@@ -60,5 +102,20 @@
             </div>
     
     </div>
+    
+    <div class="closed">
+      <div class="msg">
+         <div style="width:100% ; padding: 10px;" id="contantDiv"><span style="font-size: large;">userName</span><br><span style="font-size: large;">0598138847</span><br><a href="" style="font-size: large;"> social</a><br>
+        <span style="font-size: large;">latuide</span> <br> <span style="font-size: large;">&Tab;longitude</span></div> 
+         <div class="horizontal_box">          
+          <button onclick="close1()">ok</button>
+      </div>
+
+
+      </div>
+  </div>
+    <script src="../script/orderDetails.js">
+
+    </script>
 </body>
 </html>

@@ -11,15 +11,22 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
-session_start();
+
+$qty=$_POST['qty'];
+$bookID=$_POST['bookID'];
 
 
-$username=  $_SESSION["userName"];
-echo $username;
+$query = "SELECT * FROM `book` where `BookID`='$bookID' ";
+$result = $conn->query($query);
+$row=$result->fetch_assoc();
+$count=$row['CopiesCount'];
 
-$stmt = $conn->prepare("INSERT INTO `ordertable` (`status`, `userName`) VALUES ('not Shiped', ?)");
-$stmt->bind_param("s", $username);
-$stmt->execute();
+$count=$count-$qty;
+
+
+$query = " UPDATE `book` set `CopiesCount`='$count' where `BookID`='$bookID' ";
+$conn->query($query);
+
 
 
 $conn->close();

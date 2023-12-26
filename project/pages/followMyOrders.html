@@ -57,7 +57,7 @@
                 </a>
               </li>
               <li class="nav-items  sideOption ">
-                <a href="../pages/followMyOrders.html" class="nav-link text-white">
+                <a href="#" class="nav-link text-white">
                   <i class="fs-1 fa fa-shipping-fast " ></i><span class="fs-4  ms-2  d-none d-sm-inline"> my order</span>
       
                 </a>
@@ -69,87 +69,146 @@
       
                 </a>
               </li>
+             
             </ul>
           </div>
         </div>
         <div class="col-9 noPadd rightSide">
             <div class="card w-100 h-100 noPadd bg-transparent border-0">
                 <div class="card-body">
-                <table id="table" >
-                      
-                      <thead class="fs-6">
-                        <tr>
-                        <td>remove</td>
-                      <td>image</td>
-                      <td> title</td>
-                      <td>price</td>
-                      <td>quntaty</td>
-                      <td> total cost</td></tr></thead>
-                      <tbody>
-
-                      
-                      
-                    
-                    </tbody>
+                    <table class="w-100 " >
+                        <thead >
+                            <tr >
+                                <td  align="left" class=" fs-3">coustemer name </td>
+                                <td align="left" class=" fs-3">the order status</td>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody">
+                            <!-- <tr>
+                                <td align="left" class=" fs-3">asem</td>
+                                <td align="left class=" fs-3" > not shapping</td>
+                            </tr>
+                            <tr>
+                                <td align="left" class=" fs-3">asem</td>
+                                <td align="left" class=" fs-3" > not shapping</td>
+                            </tr> -->
+                        </tbody>
                     </table>
-                </div>
-                <div class="card-footer noPadd bg-transparent">
-                 <div class=" total">
-                    <label class="label">total cost  : <span id="cost">100.50</span>$</label>
-                    <button onclick="addOrder()"> buy</button>
-                 </div>
-                </div>
+                   </div>
+               
                 
                 </div>
             </div>
     
     </div>
-    <script src="../script/cart.js"></script>
         <script>
-          // let list= document.getElementById('table')
-          // let rows = document.querySelectorAll('.order')
-          // let inputs=document.querySelectorAll('.in')
-          // let price=document.querySelectorAll('.price')
-          // let totalCost=document.querySelectorAll('.totalCost')
-          // let inputs1=document.getElementsByClassName('in')
 
-          // alert(rows.length)
-          
-          // rows.forEach(event=>{
-          //   alert(event.childNodes.length)
-          //   let ins=event.getElementsByClassName('in');
-          //   let total=event.getElementsByClassName('totalCost')
-          //   let price=event.getElementsByClassName('price')
-          //   total[0]=parseInt(ins.value)*parseFloat(price.value)
-          //   // event.childNodes[5].childNodes[0].value=parseInt(event.childNodes[4].childNodes[0].value)*parseFloat(event.childNodes[3].childNodes[0].value)
-          //   alert(parseInt(event.childNodes[4].length))
-          //   alert(parseFloat(event.childNodes[3].length))
-          //   alert(event.childNodes[5].length)
+let tbody=document.getElementById('tbody')
 
 
-          // })
-          
-          
-
-//           list.addEventListener('click',function(e){
-//             alert('in  '+e.target.tagName)
-//              if(e.target.tagName==='LI'){
-//                 e.target.classList.toggle("checked");}
-//               else if(e.target.tagName==='I'){
-//                   e.target.parentElement.parentElement.parentElement.remove();
-//                   alert('DELETEING :)')}
-// },false)
+    console.log('scripting')
 
 
+    var xhr = new XMLHttpRequest();
+xhr.open('POST', '../pages/selectMyOrder.php', true);
+console.log('scripting')
+xhr.onload=function(){
+    if(xhr.status==200){
+
+    console.log(xhr.response)
 
 
-          // window.addEventListener('on')
-          // let qty=document.querySelectorAll('.in')
-          // let costs=document.querySelectorAll('.totalCost');
-          // let i=0;
-          // while (i<costs.length){
-          //   costs[i].innerHTML=int (qty[i].getText())*23.5;
-          // }
+    let row=JSON.parse(xhr.response)
+
+
+    row.forEach(function(e){
+       
+        console.log("order")
+        let tr=document.createElement('tr')
+        tr.classList.add('order')
+        let td=
+     [
+        document.createElement('td'),
+        // document.createElement('td'),
+        document.createElement('td')]
+     
+        let a=document.createElement('a')
+        // let i=document.createElement('i')
+        let div=document.createElement('div')
+        // i.classList.add("fa")
+        // i.classList.add("fa-trash")
+        // i.classList.add("fs-1")
+    
+    
+  
+        td[0].innerHTML=e['userName']
+        // td[2].appendChild(i)
+        td[1].innerText=e['status']
+        
+    //     i.onclick=function(){
+    //         console.log("Delete")
+    //     tr.remove();
+
+    //     let deleteRequest=new XMLHttpRequest()
+    //     deleteRequest.open("Post","../pages/deleteOrder.php",true)
+
+    //     deleteRequest.onload=function(){
+    //         if(deleteRequest.status==200){
+    //             console.log(deleteRequest.response)
+    //         }
+    //         else{
+
+    //             console.log(deleteRequest.status)
+
+    //         }
+    //         let formData=new FormData();
+    //         formData.append('orderID',e['orderID'] )
+
+    //         deleteRequest.send(formData)
+    //     }
+
+
+    // }
+    
+    function openDescrptionOFOrder(){
+        localStorage.setItem('selectedOrder',e['orderID'])
+        window.location.href='../pages/OrderDetails.html'
+
+    };
+    
+    
+    
+    td.forEach(e=>{
+       
+        tr.appendChild(e)
+        e.classList.add('fs-3')
+    })
+    td[0].onclick=function(){
+            openDescrptionOFOrder();
+        };
+        
+    td[1].onclick=function(){
+            openDescrptionOFOrder();
+        };
+
+    tbody.appendChild(tr)
+    
+    
+    
+    })
+
+
+}
+else{
+    alert('Error occurred while uploading the image. Please try again.');
+}
+}
+xhr.send("x")
+
+
+// }
+
+         
         </script>
 </body>
 </html>

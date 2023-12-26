@@ -35,11 +35,19 @@ xhr.onload = function () {
             // document.querySelector('').innerText=datas2['Title']
             document.getElementById('Auther').innerText=datas2['Auther']
             
-           
-            document.getElementById('isAvalible').innerText=datas2['CopiesCount']
+           if(datas2['CopiesCount']>0){
+            document.getElementById('isAvalible').innerText='Avalible'
+            document.getElementById('isAvalible').className="avalible"
+        }
+            else{
+
+                document.getElementById('isAvalible').innerText='Unavalible'
+                document.getElementById('isAvalible').className="finished"
+
+            }
             document.getElementById("desc").innerText=datas2['Description']
             console.log('../images/bookImages/ '+datas2['cover'])
-            document.getElementById("bookPicture").src='../images/bookImages/ '+datas2['cover']
+            document.getElementById("bookPicture").src=('../images/bookImages/'+datas2['cover']).replace(" ","")
             
         }
 
@@ -57,6 +65,23 @@ xhr.send(formData);
 
 
 function addToCart(){
+
+    let xhr=new XMLHttpRequest();
+    xhr.open('POST', '../pages/bookCount.php', true);
+    let formData=new FormData();
+    formData.append('bookID',selectedBookID)
+
+xhr.onload = function () {
+    if (xhr.status === 200) {
+        // document.getElementById('result').innerHTML = xhr.responseText;
+        console.log(xhr.response)
+        // datas2=JSON.parse(xhr.response);
+        // datas2=xhr.response
+
+        if(xhr.response>0)
+        {
+
+            
     let title=document.querySelector('#bookTitle h3')
     let price=document.getElementById('price')
     let x=bookPicture[0].outerHTML+','+title.innerHTML+','+price.innerHTML+',1'
@@ -76,6 +101,21 @@ map.set(selectedBookID,map.get(selectedBookID)+1)
 localStorage.setItem("cart",mySerialMap)
    
    console.log(map)
+
+
+        }
+
+    } else {
+        alert('Error occurred while uploading the image. Please try again.');
+    }
+};
+
+xhr.send(formData);
+
+
+
+
+
    
    
     // if(window.localStorage.getItem('cart')!=null)

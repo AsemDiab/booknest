@@ -56,6 +56,12 @@
       
                 </a>
               </li>
+              <li class="nav-items  sideOption ">
+                <a href="../pages/followMyOrders.html" class="nav-link text-white">
+                  <i class="fs-1 fa fa-shipping-fast " ></i><span class="fs-4  ms-2  d-none d-sm-inline"> my order</span>
+      
+                </a>
+              </li>
               
               <li class="nav-items sideOption ">
                 <a href="../index.html" class="nav-link text-white">
@@ -96,6 +102,7 @@
     </div></div></div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../script/catgory.js"></script>
 
     <script>
         let searchButton=document.getElementById('searchButton')
@@ -112,7 +119,7 @@
 $.ajax({
   url: "search.php",
   type: "POST",
- data: {STR:JSON.stringify(searchBox.value)} ,
+ data: {STR:searchBox.value} ,
 success: function(response) {
 console.log(response)
 datas=JSON.parse(response);
@@ -121,16 +128,17 @@ console.log(122)
 
 // .innerHTML=""
 let container=document.getElementById('container')
-// container.innerHTML=''
+container.innerHTML=''
 for(let j=0;j<datas.length;j++){
   console.log(122)
-    let bookCard=document.createElement('div')
-    bookCard.classList.add('bookCard')
-    bookCard.style.backgroundImage="url('../images/lastClosedDoors.png') "
-    bookCard.onclick=function(){
-        window.location.href='../pages/bookPage.html'
-    }
-    container.appendChild(bookCard);  
+  buildCard(datas[j]);
+    // let bookCard=document.createElement('div')
+    // bookCard.classList.add('bookCard')
+    // bookCard.style.backgroundImage="url('../images/lastClosedDoors.png') "
+    // bookCard.onclick=function(){
+    //     window.location.href='../pages/bookPage.html'
+    // }
+    // container.appendChild(bookCard);  
 }
 
 },

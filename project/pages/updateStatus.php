@@ -1,7 +1,6 @@
 <?php
 
-
-$servername = "localhost";
+    $servername = "localhost";
     $username = "root";
     $password = "";
     $dbname = "booknest";
@@ -11,15 +10,22 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
-session_start();
+
+$status=$_POST['status'];
+$orderID=$_POST['orderID'];
+
+$sql= " UPDATE  `ordertable` SET `status`='$status' where `orderID`='$orderID'";
+// echo $sql;
+if($conn->query($sql)==true)
+{
+
+    echo $status;
+}
+else{
+    echo "";
+}
 
 
-$username=  $_SESSION["userName"];
-echo $username;
-
-$stmt = $conn->prepare("INSERT INTO `ordertable` (`status`, `userName`) VALUES ('not Shiped', ?)");
-$stmt->bind_param("s", $username);
-$stmt->execute();
 
 
 $conn->close();

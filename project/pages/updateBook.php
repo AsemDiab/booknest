@@ -11,7 +11,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
-
+$bookID=$_POST['bookID'];
 $bookTitle=$_POST['bookTitle'];
 $Auther=$_POST['Auther'];
 $copiesNumber=$_POST['copiesNumber'];
@@ -23,27 +23,7 @@ $Descr=$_POST['bookDescription'];
 // $imageData = base64_encode(file_get_contents($image));
 
 
-
-$image = $_FILES['image']['tmp_name'];
-
-$filename = uniqid().'.' . pathinfo($image, PATHINFO_EXTENSION);
-
-$url =  "..\images\bookImages\ ".$filename;
-
-
-// Validate image
-if (!is_uploaded_file($image) || !getimagesize($image)) {
-  die('Invalid image');
-}
-
-// Generate unique filename
-// $filename = uniqid().'.' . pathinfo($image, PATHINFO_EXTENSION);
-// 
-// Store image
-if (!move_uploaded_file($image,  $url)) {
-  die('Error uploading image');
-}
-$stmt = $conn->prepare("INSERT INTO `book` (`Title`, `Auther`, `CopiesCount`, `Price`, `Type`, `cover`, `Description`) VALUES (?, ?, ?, ?, ?, '".$filename."', ?)");
+$stmt = $conn->prepare("UPDATE `book` SET `Title`=?,`Auther`=?,`CopiesCount`=?,`Price`=?,`Type`=?,`Description`=? WHERE `BookID`='$bookID'");
 $stmt->bind_param("ssiiis", $bookTitle, $Auther, $copiesNumber, $price, $bookType, $Descr);
 $stmt->execute();
 

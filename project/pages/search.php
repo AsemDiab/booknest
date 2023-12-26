@@ -14,7 +14,10 @@ if ($conn->connect_error) {
 }
 
 // echo json_decode($_POST['STR']);
-$sql="SELECT * FROM book WHERE `Auther` LIKE '%".json_decode($_POST['STR'])."%'  OR `Title` LIKE '%".$_POST['STR']."%' OR `Description` LIKE '%".$_POST['STR']."%';";
+// $sql="SELECT * FROM book WHERE `Auther` LIKE '%".json_decode($_POST['STR'])."%'  OR `Title` LIKE '%".$_POST['STR']."%' OR `Description` LIKE '%".$_POST['STR']."%';";
+
+$sql="SELECT * FROM book WHERE `Auther` LIKE '%".$_POST['STR']."%'  OR `Title` LIKE '%".$_POST['STR']."%' OR `Description` LIKE '%".$_POST['STR']."%';";
+
 $result=$conn->query($sql);
 // $data=array();
 while ($row=$result->fetch_assoc()) {

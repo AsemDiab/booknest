@@ -33,8 +33,12 @@ td{
     border-width: 0px 0px 1px 0px;
     padding: 2px;
 }
-table tr :nth-child(3) td{
+.avalible{
     color:green
+}
+
+.finished{
+    color:red
 }
 .desceiption{
     width: 100%;

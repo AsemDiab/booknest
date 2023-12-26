@@ -1,8 +1,53 @@
 
 let addToDatabase=document.getElementById('addToDatabase')
 let bookType=document.getElementById('bookType')
+console.log(localStorage.getItem('selectedUpdateBookID'))
 
  let datas=[];
+
+ document.body.onload=function(){
+ var formData = new FormData();
+if(localStorage.getItem('selectedUpdateBookID')==null)
+window.location="../pages/updateBook.html"
+formData.append('Id',  localStorage.getItem('selectedUpdateBookID'));
+
+var xhr = new XMLHttpRequest();
+xhr.open('POST', '../pages/selectBook.php', true);
+
+xhr.onload = function () {
+    if (xhr.status === 200) {
+        // document.getElementById('result').innerHTML = xhr.responseText;
+        console.log(xhr.response)
+        datas2=JSON.parse(xhr.response);
+        // datas2=xhr.response
+
+        console.log(datas2)
+
+        if(datas2!=null)
+        {
+
+            alert(datas2)
+            document.querySelector('#bookTitle').value=datas2['Title']
+            document.getElementById('price').value=datas2['Price']
+            
+            // document.querySelector('').innerText=datas2['Title']
+            document.getElementById('Auther').value=datas2['Auther']
+            
+            document.getElementById('copiesNumber').value=datas2['CopiesCount']
+
+            document.getElementById("bookDescription").innerText=datas2['Description']
+            console.log('../images/bookImages/ '+datas2['cover'])
+            document.getElementById("bookPicture").src='../images/bookImages/'+datas2['cover']
+            
+        }
+
+    } else {
+        alert('Error occurred while uploading the image. Please try again.');
+    }
+};
+
+xhr.send(formData);
+ }
 
 $.ajax({
    url: "selectsTyps.php",
@@ -38,10 +83,10 @@ addToDatabase.onclick=function(){
     let copiesNumber=document.getElementById('copiesNumber')
     let price=document.getElementById('price')
     let bookType=document.getElementById('bookType')
-    let file=document.getElementById('imageinput')
     var formData = new FormData();
 
-    formData.append('image', file.files[0]);
+    // formData.append('image', file.files[0]);
+    formData.append('bookID',localStorage.getItem('selectedUpdateBookID'))
     formData.append('bookTitle', bookTitle.value);
     formData.append('Auther',Auther.value );
     formData.append('copiesNumber',copiesNumber.value );
@@ -52,14 +97,14 @@ addToDatabase.onclick=function(){
 
     
     
-    if(file.files[0]!=undefined && price.value!='' && copiesNumber.value!=""){
-        console.log(112)
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'addBook.php', true);
+    xhr.open('POST', 'updateBook.php', true);
 
     xhr.onload = function () {
         if (xhr.status === 200) {
             console.log(xhr.response)
+
+            alert('the book Data update successfully')
             
         } else {
             alert('Error occurred while uploading the image. Please try again.11111111111');
@@ -67,8 +112,5 @@ addToDatabase.onclick=function(){
     };
 
     xhr.send(formData);
-}
-
-
 }
 
