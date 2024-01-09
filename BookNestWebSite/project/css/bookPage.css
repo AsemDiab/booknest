@@ -1,0 +1,80 @@
+.container{
+    margin-top: 100px;
+    background: rgba(255, 255, 255, 0.5);
+    width: 80%;
+    border-radius: 50px 50px 50px 50px;
+    height: fit-content;
+    padding-bottom: 100px;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px 10px 25px 30px ;
+    gap: 20px;
+    /* overflow: auto; */
+}
+.bookPicture{
+    border-radius: 20px;
+    width: clamp(50px,33%,150px);
+    aspect-ratio: 1/1.5;
+    background-size: 100% 100%;
+    position: relative;
+    transform: translateY(-50px);
+    max-height: 300px;
+    z-index: 2;
+}
+table{
+    width: 66%;
+}
+td{
+    padding-left: 10px;
+    width: fit-content;
+    height: fit-content;
+    font-weight: bold;
+    border-width: 0px 0px 1px 0px;
+    padding: 2px;
+}
+.avalible{
+    color:green
+}
+
+.finished{
+    color:red
+}
+.desceiption{
+    width: 100%;
+    height: fit-content;
+
+}
+#addToCart{
+    background-color:#bf1f49 ;
+    border-radius: 50px;
+    padding: 5px ;
+    font-weight: 500;
+    border: none;
+    color:white
+}
+#addToCart:hover{
+    background-color: #bf1f49;
+    box-shadow: 1px 7px 13px 0px rgba(67,0,17,0.13);
+    transform: scale(1.02);
+}
+#isAvalible{
+    color:#167371
+}
+@media screen and (max-width:500px) {
+    
+    .container{
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        border-radius: 20px;
+    }
+    .bookPicture{
+        width: 50%;
+        /* justify-self: center; */
+        left: calc(25%  - 10px);
+    }
+    table{
+        width: 100%;
+    }
+}

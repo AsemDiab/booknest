@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">  
+    <link rel="stylesheet" href="../css/commonStyles.css">
+    <link rel="stylesheet" href="../css/cartPage.css">
+    <link rel="stylesheet" href="../css/liststyle.css">
+</head>
+<body>
+    <div class="container-fluid " id="displayer">
+        <div class="row flex-nowarp "> 
+        <div class="bg-dark col-auto col-md-3 col-lg-3 min-vh-100 d-flex flex-column justify-content-between manu">
+          <div class="bg-dark ">
+            <a class="d-flex text-decoration-none align-items-center">
+              <img src="../images/booknest.2jfif.jfif"><br>
+            </a>
+            <ul class="nav nav-pills flex-column  mt-4">
+              
+              <li class="nav-items sideOption">
+                <a href="homePage.html" class="nav-link text-white">
+                  <i class="fs-1 fa fa-house "></i><span class="fs-4 d-none ms-2 d-sm-inline">Home</span>
+      
+                </a>
+              </li>
+              
+              <li class="nav-items sideOption  ">
+                <a href="catagorypage.html" class="nav-link text-white">
+                  <i class="fs-1 fa fa-table-list"></i><span class="fs-4 ms-2 d-none d-sm-inline">catagry</span>
+      
+                </a>
+              </li>
+              
+              <li class="nav-items sideOption ">
+                <a href="cartPage.html" class="nav-link text-white">
+                  <i class="fs-1 fa fa-cart-shopping" id="cartpage"></i><span class="fs-4 ms-2 d-none d-sm-inline">cart</span>
+      
+                </a>
+              </li>
+              
+              <li class="nav-items sideOption">
+                <a href="searchPage.html" class="nav-link text-white">
+                  <i class=" fs-1 fa fa-search"></i><span class="fs-4 ms-2 d-none d-sm-inline">search</span>
+      
+                </a>
+              </li>
+              
+              <li class="nav-items sideOption ">
+                <a href="editInformation.html" class="nav-link text-white">
+                  <i class=" fs-1 fa fa-user"></i><span class="fs-4 ms-2 d-none d-sm-inline">personal Information</span>
+      
+                </a>
+              </li>
+              <li class="nav-items  sideOption  selectedsideOption ">
+                <a href="#" class="nav-link text-white">
+                  <i class="fs-1 fa fa-shipping-fast " ></i><span class="fs-4  ms-2  d-none d-sm-inline"> my order</span>
+      
+                </a>
+              </li>
+              
+              <li class="nav-items  sideOption ">
+                <a href="../index.html" class="nav-link text-white">
+                  <i class="fs-1 fa  fa-sign-out-alt " style="position: fixed; left: 10px; bottom: 20px;"></i><span class="fs-4  ms-2  d-none d-sm-inline"></span>
+      
+                </a>
+              </li>
+             
+            </ul>
+          </div>
+        </div>
+        <div class="col-9 noPadd rightSide">
+            <div class="card w-100 h-100 noPadd bg-transparent border-0">
+                <div class="card-body">
+                    <table class="w-100 " >
+                        <thead >
+                            <tr >
+                                <td  align="left" class=" fs-3">coustemer name </td>
+                                <td align="left" class=" fs-3">the order status</td>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody">
+                       
+                        </tbody>
+                    </table>
+                   </div>
+               
+                
+                </div>
+            </div>
+    
+    </div>
+    <script>
+      let session= new XMLHttpRequest()
+      session.open('POST','session.php',true)
+      session.onload=function(){
+        if(session.status==200)
+          if(session.response=="JohnDoe")
+          window.location="../index.html"
+
+      }
+      session.send('')
+     </script>
+        <script>
+
+let tbody=document.getElementById('tbody')
+
+
+    console.log('scripting')
+
+
+    var xhr = new XMLHttpRequest();
+xhr.open('POST', '../pages/selectMyOrder.php', true);
+console.log('scripting')
+xhr.onload=function(){
+    if(xhr.status==200){
+
+    console.log(xhr.response)
+
+
+    let row=JSON.parse(xhr.response)
+
+
+    row.forEach(function(e){
+       
+        console.log("order")
+        let tr=document.createElement('tr')
+        tr.classList.add('order')
+        let td=
+     [
+        document.createElement('td'),
+        // document.createElement('td'),
+        document.createElement('td')]
+     
+        let a=document.createElement('a')
+        // let i=document.createElement('i')
+        let div=document.createElement('div')
+        // i.classList.add("fa")
+        // i.classList.add("fa-trash")
+        // i.classList.add("fs-1")
+    
+    
+  
+        td[0].innerHTML=e['userName']
+        // td[2].appendChild(i)
+        td[1].innerText=e['status']
+        
+    //     i.onclick=function(){
+    //         console.log("Delete")
+    //     tr.remove();
+
+    //     let deleteRequest=new XMLHttpRequest()
+    //     deleteRequest.open("Post","../pages/deleteOrder.php",true)
+
+    //     deleteRequest.onload=function(){
+    //         if(deleteRequest.status==200){
+    //             console.log(deleteRequest.response)
+    //         }
+    //         else{
+
+    //             console.log(deleteRequest.status)
+
+    //         }
+    //         let formData=new FormData();
+    //         formData.append('orderID',e['orderID'] )
+
+    //         deleteRequest.send(formData)
+    //     }
+
+
+    // }
+    
+    function openDescrptionOFOrder(){
+        localStorage.setItem('selectedOrder',e['orderID'])
+        window.location.href='../pages/OrderDetails.html'
+
+    };
+    
+    
+    
+    td.forEach(e=>{
+       
+        tr.appendChild(e)
+        e.classList.add('fs-3')
+    })
+    td[0].onclick=function(){
+            openDescrptionOFOrder();
+        };
+        
+    td[1].onclick=function(){
+            openDescrptionOFOrder();
+        };
+
+    tbody.appendChild(tr)
+    
+    
+    
+    })
+
+
+}
+else{
+    alert('Error occurred while uploading the image. Please try again.');
+}
+}
+xhr.send("x")
+
+
+// }
+
+         
+        </script>
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/regStyle.css">
+    <title>Register</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="wrapper">
+        <div >
+            <h1> Register</h1>
+            <div class="input-box">
+                <input type="text" placeholder="UserName" id="UserName"
+                 required>
+                 <i class='bx bxs-user'></i>
+            </div>
+            <div class="input-box">
+                <input type="password" placeholder="Password" id="password"
+                required>
+                <i class='bx bxs-lock-alt'></i>
+            </div>
+            <div class="input-box">
+                <input type="password" placeholder="Confirm password" id="ConfirmPassword"
+                required>
+                <i class='bx bxs-lock'></i>
+            </div>
+            <div class="input-box"><label  for="social_Input">social Media</label> <input type="url" id="social_Input" placeholder="social media url" required></div>
+            <div class="input-box"><label  for="phoneNumber">phone Number</label> <input type="tel" id="phoneNumber" placeholder="phone number" maxlength="50" required></div>
+<br>
+            <button  class="btn" onclick="addUser()">Submit</button>
+        </div>
+
+        <script>
+            let validUser=false;
+            let validURL=false;
+            let validPAssword=false;
+            let validPhone=false;
+            letvalide=false;
+
+            function addUser(){
+    console.log("hello , ithot its work2")
+
+    var signRequest = new XMLHttpRequest();
+        signRequest.open('POST', '../pages/sign.php', true);
+
+        signRequest.onload = function () {  
+        if (signRequest.status === 200) {
+            valid=0
+        console.log(signRequest.response)
+
+        if(signRequest.response==1)
+        valide=true;
+
+  
+    if(signRequest.response==1) {
+    window.location.href="../pages/homePage.html"
+    localStorage.setItem('userName',UserName)
+}
+    else 
+    alert("user name or password is wrong")
+        } else {
+    alert('Error occurred while uploading the image. Please try again.11111111111');
+}
+};
+
+
+
+let formData=new FormData();
+
+let social_Input=document.getElementById('social_Input').value
+let phoneNumber=document.getElementById('phoneNumber').value
+let ConfirmPassword=document.getElementById('ConfirmPassword').value
+let password=document.getElementById('password').value
+let UserName=document.getElementById('UserName').value
+
+
+formData.append('social_Input', social_Input);
+formData.append('phoneNumber', phoneNumber);
+formData.append('oldpassword', ConfirmPassword);
+formData.append('password', password);
+formData.append('UserName', UserName);
+
+
+
+var xhr = new XMLHttpRequest();
+xhr.open('POST', '../pages/signup.php', true);
+
+xhr.onload = function () {
+    if (xhr.status === 200) {
+        console.log(xhr.response)
+
+        console.log("hello , ithot its work3")
+   
+
+    } else {
+        alert('Error occurred while uploading the image. Please try again.');
+    }
+};
+
+document.getElementById('ConfirmPassword').style.borderColor="red"
+
+if(password==ConfirmPassword){
+    validPAssword=true
+    document.getElementById('ConfirmPassword').style.borderColor="lightgreen"
+
+}
+else{
+document.getElementById('ConfirmPassword').style.borderColor="red"
+validPAssword=false
+
+            }
+
+if(validUser&&validPAssword&&validURL&&validPhone){
+    console.log("done")
+    xhr.send(formData)
+    var formData1 = new FormData();
+        formData1.append('UserName', UserName);
+        formData1.append('Password', password);
+    signRequest.send(formData1);
+   
+}
+}
+
+
+function isValidPassword(password) {
+  // Check if the password meets the criteria
+  const minLength = 8;
+  const hasUppercase = /[A-Z]/.test(password);
+  const hasLowercase = /[a-z]/.test(password);
+  const hasNumber = /\d/.test(password);
+  const hasSpecialChar = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(password);
+
+  return (
+    password.length >= minLength &&
+    hasUppercase &&
+    hasLowercase &&
+    hasNumber &&
+    hasSpecialChar
+  );
+}
+
+
+document.getElementById('password').onchange=function(){
+    validPAssword=false
+    if(isValidPassword(document.getElementById('password').value)){
+        document.getElementById('password').style.borderColor="lightgreen"
+        validPAssword=true
+    }
+        else
+        document.getElementById('password').style.borderColor="red"
+
+
+
+}
+
+
+
+function isValidUrl(url) {
+  // Regular expression for a simple URL validation
+  const urlRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/;
+  return urlRegex.test(url);
+}
+document.getElementById('social_Input').onchange=function(){
+    validUrl=false
+    if(isValidUrl(document.getElementById('social_Input').value)){
+        document.getElementById('social_Input').style.borderColor="lightgreen"
+        validURL=true
+    }
+        else
+        document.getElementById('social_Input').style.borderColor="red"
+    
+
+}
+
+document.getElementById('UserName').onchange=function(){
+    let formData =new FormData();
+
+    validUser=false
+    document.getElementById('UserName').style.borderColor="red"
+
+
+    let UserName=document.getElementById('UserName').value
+    formData.append('UserName', UserName);
+
+
+    
+   
+
+
+
+var xhr = new XMLHttpRequest();
+xhr.open('POST', '../pages/isExist.php', true);
+
+xhr.onload = function () {
+    if (xhr.status === 200) {
+        if(xhr.response==0){
+        validUser=true
+        document.getElementById('UserName').style.borderColor="lightgreen"
+
+        
+      
+
+       
+
+
+
+
+        }
+    
+        console.log("hello , ithot its work3")
+   
+
+    } else {
+        alert('Error occurred while uploading the image. Please try again.');
+    }
+};
+
+if(UserName!=null&&UserName.trim!=""&&UserName!=undefined)
+xhr.send(formData);
+
+
+
+
+}
+
+        
+function isValidPhoneNumber(phoneNumber) {
+  // Check if the phone number matches a basic pattern
+  const phoneRegex = /^\d{10}$/; // Assumes a 10-digit phone number, adjust as needed
+
+  return phoneRegex.test(phoneNumber);
+}
+
+document.getElementById('phoneNumber').onchange=function(){
+    validPhone=false
+    if(isValidPhoneNumber(document.getElementById('phoneNumber').value)){
+        document.getElementById('phoneNumber').style.borderColor="lightgreen"
+        validPhone=true
+    }
+        else
+        document.getElementById('phoneNumber').style.borderColor="red"
+
+}
+        </script>
+
+    </div>
+</body>
+</html>

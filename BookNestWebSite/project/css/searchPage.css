@@ -1,0 +1,126 @@
+
+
+
+.search-box {
+	position: absolute;
+	top : 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: #2f3640;
+	height: 40px;
+	border-radius: 40px;
+  }
+  body{
+    background: url('../mainPage/fly.jpg');
+    background-size: cover;
+    /* height: 10
+    
+    0vh; */
+    /* overflow: hidden; */
+  }
+  .head{
+    height: 50px;
+    border-bottom: 1px solid black ;
+    position: relative;
+  }
+  
+  a:active , a:visited{
+    color:#ffd000;
+    text-decoration: none;
+  }
+  /* .search-box:hover > .search-text{
+	width: 240px;
+	padding: 0 6px;
+  }*/
+  
+  .search-box:hover > .search-btn{
+	background: white;
+	color: black;
+  } 
+  
+  .search-btn {
+	color: #ffd000;
+	float: right;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background: #2f3640;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: 0.4s;
+	cursor: pointer;
+	text-decoration: none;
+  }
+  
+  .search-text {
+	border: none;
+	background: none;
+	outline: none;
+	float: left;
+	padding: 0;
+	color: white;
+	font-size: 16px;
+	font-weight: normal;
+	transition: 0.4s;
+	line-height: 40px;
+	width: 0px;
+  }
+  .close-btn {
+	color: #ffd000;
+	float: right;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background: #2f3640;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: 0.4s;
+	cursor: pointer;
+	text-decoration: none;
+    position: relative;
+  }
+  .bookCard{
+    width: clamp(80px,80%,320px);
+    aspect-ratio: 80/100;
+    background: url('../images/lastClosedDoors.png')  ;
+    background-size: 100% ;
+    justify-self: center;
+    align-self: center;
+    box-shadow: 1px 1px 0px #ffffffff ;
+    position: relative;
+}
+.container::-webkit-scrollbar{
+    display: none;
+}
+
+.container{
+    background:#ffffff55;
+    border-radius: 10px;
+    overflow: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,clamp(80px,16%,320px));
+height: fit-content;
+    row-gap: 10px;
+    justify-content: center;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.rightSide{
+  position: absolute;
+  right: 0px;
+}
+@media screen and (max-width:750px) {
+  .container{
+
+    grid-template-columns: 1fr;
+  
+  
+}
+.rightSide{
+  position: absolute;
+  right: 10px;
+}
+  
+}

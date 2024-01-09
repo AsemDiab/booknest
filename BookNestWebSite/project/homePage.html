@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/firstHome.css">
+    <title>Home</title>
+</head>
+<body>
+
+    <div class="backG">
+        <div class="navbar">
+            <img src="images/booknest-brown.png" alt="booknestLogo" class="logo">
+            <button type="button" id="homeButton">Home </button>
+            <button type="button" id="loginBtn">Login</button>
+            <button type="button" id="signBtn">Sign Up</button>
+            <button type="button" id="aboutUsButton">About Us</button>
+
+            <div class="sideBar">
+                <div class="socialLinks">
+                    <a href="https://www.facebook.com/ahmad.tubaileh.7/"><img src="images/facebook-black1.png" alt="facebookIcon-black" class="icons" style="width: 40px;"></a>
+                  <a href="https://twitter.com/"><img src="images/X.png" alt="X-Icon" class="icons"></a>
+                    <a href="https://www.instagram.com/ahmad_tubaileh/?hl=en"><img src="images/insta.png" alt="insta-black" class="icons" style="width: 45px;"></a>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="slider">
+            <div class="slides">
+                <!-- radio buttons start-->
+                <input type="radio" name="radio-btn" id="radio1">
+                <input type="radio" name="radio-btn" id="radio2">
+                <input type="radio" name="radio-btn" id="radio3">
+                <!-- radio buttons end-->
+                <!--slides image start-->
+                <div class="slide first">
+                    <img src="images/books1.jpg" alt="slider1" >
+                </div>
+
+                <div class="slide">
+                    <img src="images/books2.jpg" alt="slider2" >
+                </div>
+
+                <div class="slide">
+                    <img src="images/books4.png" alt="slider3" >
+                </div>
+                <!--slides image start-->
+                <!--auto navigation start-->
+                <div class="navigation-auto">
+                    <div class="auto-btn1"></div>
+                    <div class="auto-btn2"></div>
+                    <div class="auto-btn3"></div>
+                </div>
+                <!--auto navigation end-->
+            </div>
+            <!--manual navigation start-->
+            <div class="navigation-manual">
+                <label for="radio1" class="manual-btn"></label>
+                <label for="radio2" class="manual-btn"></label>
+                <label for="radio3" class="manual-btn"></label>
+            </div>
+            <!--manual navigation end-->
+
+        </div>
+    </div>
+
+    <div id="aboutUs">
+        <p >
+            A simple project that simulate a book store done by two students from Al-Najah university: <br>
+            Asem Diab<br>
+            Ahmad Tubaila
+        </p>
+    </div>
+
+    <script src="script/home.js"></script>
+</body>
+</html>
